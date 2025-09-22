@@ -27,8 +27,7 @@ function createIcon(emoji, color) {
 }
 
 // места
-const places = [
-    {
+const places = [{
         name: "Набережная Вёшенская",
         coords: [49.626346, 41.724429],
         icon: "🌊",
@@ -143,3 +142,29 @@ function hideInfo() {
     infoBox.innerHTML = "";
     map.invalidateSize();
 }
+
+const legend = L.control({
+    position: 'bottomright'
+});
+
+legend.onAdd = function () {
+    const div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = `
+    <b>Легенда:</b><br>
+    <div style="display:flex;align-items:center;margin:4px 0;">
+        <div style="width:16px;height:16px;background:#4CAF50;border-radius:50%;margin-right:6px;"></div> Природа
+    </div>
+    <div style="display:flex;align-items:center;margin:4px 0;">
+        <div style="width:16px;height:16px;background:#2196F3;border-radius:50%;margin-right:6px;"></div> Музеи
+    </div>
+    <div style="display:flex;align-items:center;margin:4px 0;">
+        <div style="width:16px;height:16px;background:#FFC107;border-radius:50%;margin-right:6px;"></div> Памятники
+    </div>
+    <div style="display:flex;align-items:center;margin:4px 0;">
+        <div style="width:16px;height:16px;background:#9C27B0;border-radius:50%;margin-right:6px;"></div> Хутор
+    </div>
+    `;
+    return div;
+};
+
+legend.addTo(map);
